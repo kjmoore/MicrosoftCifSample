@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Basic Page</title>
+<script type="text/javascript" src="https://lafor365uk.crm11.dynamics.com/webresources/Widget/msdyn_ciLibrary.js" data-crmurl="https://lafor365uk.crm11.dynamics.com" data-cifid="CIFMainLibrary"></script>
+</head>
+<body>
+	<p>Test</p>
+	<script type="text/javascript">
+		// Check if the microsoft lib has loaded yet
+		const checkForLibs = () => {
+          if (window.Microsoft !== undefined) {
+          	// Once the lib has been defined, wait 1 second then create a session
+            setTimeout(() => {
+			    const initialSession = {
+			      templateName: "la365_home",
+			      templateParameters: {
+			        title: "Live Assist 365 Home",
+			      },
+			    };
+			    window.Microsoft.CIFramework.createSession(initialSession).then(
+			      (sessionId) => {
+			        console.log("CSW: Created session:" + sessionId);
+			      },
+			      (error) => {
+			        console.log("CSW: ", error);
+			      }
+			    );
+            }, 1000);
+          } else {
+            setTimeout(checkForLibs, 500);
+          }
+        };
+        checkForLibs();
+	</script>
+</body>
+</html>
