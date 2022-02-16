@@ -4,33 +4,27 @@
 <script type="text/javascript" src="https://lafor365us.crm.dynamics.com/webresources/Widget/msdyn_ciLibrary.js" data-crmurl="https:/lafor365us.crm.dynamics.com" data-cifid="CIFMainLibrary"></script>
 </head>
 <body>
-	<p>Test</p>
-	<script type="text/javascript">
-		// Check if the microsoft lib has loaded yet
-		const checkForLibs = () => {
-          if (window.Microsoft !== undefined) {
-          	// Once the lib has been defined, wait 1 second then create a session
-            setTimeout(() => {
-			    const initialSession = {
-			      templateName: "la365_home",
-			      templateParameters: {
-			        title: "Live Assist 365 Home",
-			      },
-			    };
-			    window.Microsoft.CIFramework.createSession(initialSession).then(
-			      (sessionId) => {
-			        console.log("CSW: Created session:" + sessionId);
-			      },
-			      (error) => {
-			        console.log("CSW: ", error);
-			      }
-			    );
-            }, 1000);
-          } else {
-            setTimeout(checkForLibs, 500);
-          }
-        };
-        checkForLibs();
-	</script>
+<p>Test</p>
+<script type="text/javascript">
+	window.addEventListener("CIFInitDone", function () {
+		console.log("The CIF Framework is now active");
+		const initialSession = {
+			templateName: "la365_home",
+			templateParameters: {
+				title: "Live Assist 365 Home",
+			},
+		};
+
+		window.Microsoft.CIFramework.createSession(initialSession).then(
+			(sessionId) => {
+				console.log("CSW: Created session:" + sessionId);
+			},
+			(error) => {
+				console.log("CSW: ", error);
+			}
+		);
+	});
+	console.log("Running the CSW Test code");
+</script>
 </body>
 </html>
