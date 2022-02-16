@@ -1,7 +1,6 @@
 <html>
 <head>
 <title>Basic Page</title>
-<script type="text/javascript" src="https://lafor365us.crm.dynamics.com/webresources/Widget/msdyn_ciLibrary.js" data-crmurl="https:/lafor365us.crm.dynamics.com" data-cifid="CIFMainLibrary"></script>
 </head>
 <body>
 <p>Test</p>
@@ -24,6 +23,13 @@
 			}
 		);
 	});
+	
+	const dynamicsApi = document.createElement("script");
+	dynamicsApi.setAttribute("src", document.referrer + "/webresources/Widget/msdyn_ciLibrary.js");
+	dynamicsApi.setAttribute("data-cifid", "CIFMainLibrary");
+	dynamicsApi.setAttribute("data-crmurl", document.referrer);
+	document.head.appendChild(dynamicsApi);
+	
 	console.log("Running the CSW Test code");
 </script>
 </body>
